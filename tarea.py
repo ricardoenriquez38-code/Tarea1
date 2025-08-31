@@ -1,12 +1,11 @@
 def encontrar_k(letras, K):
-    n = len(letras)
-def encontrar_k(letras, K):
     vistos = set()
+    pares = []  # Lista para guardar los pares encontrados
     for x in letras:
         if (K - x) in vistos:
-            return True
+            pares.append((K - x, x))
         vistos.add(x)
-    return False
+    return pares
 
 letras = []
 numero = int(input("¿Cuántos números quieres ingresar? "))
@@ -14,12 +13,13 @@ numero = int(input("¿Cuántos números quieres ingresar? "))
 for i in range(numero):
     letra = int(input(f"Ingrese el número {i+1}: "))
     letras.append(letra)
-
 K = int(input("Ingresa el valor de K: "))
 
-resultado = encontrar_k(letras, K)
+pares_encontrados = encontrar_k(letras, K)
 
-if resultado:
-    print(f"Sí, existe al menos un par cuya suma es {K}.")
+if pares_encontrados:
+    print(f"Se encontraron los siguientes pares cuya suma es {K}:")
+    for par in pares_encontrados:
+        print(par)
 else:
-    print(f"No, no existe ningún par cuya suma sea {K}.")
+    print(f"No se encontraron pares cuya suma sea {K}.")
