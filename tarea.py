@@ -1,28 +1,22 @@
-def encontrar_k(letras, K):
-    vistos = set()  
-    pares = []
+def existe_par_doble_arreglo(arr, K):
+    n = len(arr)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if arr[i] + arr[j] == K:
+                print(f"Par encontrado: {arr[i]} + {arr[j]} = {K}")
+                return True
+    return False
 
-    for x in letras:
-        if (K - x) in vistos:
-            pares.append((K - x, x))
-        vistos.add(x)
+# Entrada de datos usando ciclo
+arr = []
+tamaño = int(input("¿Cuántos números quieres ingresar? "))
 
-    return pares
-
-numero = int(input("¿Cuántos números quieres ingresar? "))
-letras = []
-
-for i in range(numero):
-    letra = int(input(f"Ingrese el número {i+1}: "))
-    letras.append(letra)
+for i in range(tamaño):
+    num = int(input(f"Ingrese el número {i+1}: "))
+    arr.append(num)
 
 K = int(input("Ingresa el valor de K: "))
 
-resultado = encontrar_k(letras, K)
 
-if resultado:
-    print("Pares que suman K:")
-    for par in resultado:
-        print(par)
-else:
-    print("No hay pares que sumen K.")
+resultado = existe_par_doble_arreglo(arr, K)
+print("¿Existe el par?", resultado)
